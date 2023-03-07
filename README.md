@@ -10,7 +10,7 @@ The repo is called workspace where different applications will be created to hig
 The `schema/` directory contained the swagger specificiation for our first API; virtual library. It can be used to automatically generate documentation and libraries for the API, it can validate incoming requests and outgoing responses. Developers can access the schema by visiting `/virtual_library/schema` endpoint or by viewing it on the web browser `/virtual_library/docs`
  Here is the expected endpoints:
 
- ![image](https://user-images.githubusercontent.com/75281072/219797823-931990ee-a7d4-4830-a048-24cfd2e378b0.png)
+ ![image](https://user-images.githubusercontent.com/75281072/223328670-5f262693-5290-4bdf-80e3-7f27f9a4c66d.png)
 
 ## Enviroment
 
