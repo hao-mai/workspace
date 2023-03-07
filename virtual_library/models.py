@@ -2,13 +2,14 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.urls import reverse
 
 class Genre(models.Model):
     """
     Genre of the book
     """
     name = models.CharField(max_length=255)
-    
+
     def __str__(self):
         return self.name
 
@@ -19,7 +20,7 @@ class Book(models.Model):
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=255)
     description = models.TextField()
-    genres = models.ManyToManyField(Genre)
+    genre = models.ManyToManyField(Genre, related_name='genres')
     num_pages = models.IntegerField()
     available = models.BooleanField(default=True)
     quantity = models.PositiveIntegerField(default=1)
@@ -39,6 +40,9 @@ class Book(models.Model):
 
     def __str__(self):
         return str(self.title)
+
+    def get_absolute_url(self):
+        return reverse("book_detail", kwargs={"pk": self.pk})
 
 class Checkout(models.Model):
     book = models.ForeignKey('Book',on_delete=models.RESTRICT,null=True)

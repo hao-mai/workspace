@@ -15,6 +15,8 @@ import pytest_is_running
 import environ
 import warnings
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,12 +31,15 @@ if not pytest_is_running.is_running():
         warnings.filterwarnings("ignore", category=UserWarning)
         environ.Env.read_env(env_file=BASE_DIR / env_file)
 
+        print("Using env file:", env_file)
+
 API_URL = env("API_URL", default="http://localhost:8000")
 ENVIRONMENT = env("ENVIRONMENT", default="local")
 
 SECRET_KEY = env('SECRET_KEY')
 if not SECRET_KEY:
-    raise Exception('DJANO_SECRET_KEY is not set in the enviroment.')
+    raise Exception('SECRET_KEY is not set in the environment.')
+
 
 
 DEBUG = env("DEBUG", default=False)
@@ -111,7 +116,10 @@ DATABASES = {
         'PORT': '3306',
         'USER': 'user',
         'PASSWORD': "password",
-    }
+        'TEST': {
+            'NAME': 'test_db',
+    },
+}
 }
 
 

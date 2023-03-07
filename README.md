@@ -39,7 +39,7 @@ Installed from [pre-commit](https://pre-commit.com/).
 
 To install the git hook (which will run only on changed files upon commit):
 
-    pre-commit install
+    pip3 install pre-commit
 
 To manually run hooks only on files you've changed:
 
@@ -49,6 +49,9 @@ To manually run hooks on the entire project:
 
     pre-commit run --all-files
 
+Issue that may arises:
+* Permission denied: '/home/vscode/.cache/pre-commit' - input `whoami` into the docker terminal, then run `sudo chown -R vscode /home/vscode/.cache`
+
 ## Running Tests
 
 I chose [pytest](https://docs.pytest.org/en/6.2.x/getting-started.html) for all tests in my app(s).
@@ -57,6 +60,10 @@ For the setup, [pytest-django](https://pytest-django.readthedocs.io/en/latest/)
 To run all tests, simply run pytest with no arguments:
 
     pytest
+
+Issues that may arises:
+* django.core.exceptions.ImproperlyConfigured - run in terminal `export DJANGO_SETTINGS_MODULE=virtual_library.settings`
+* Got an error creating the test database: (1044, "Access denied for user 'user'@'%' to database 'test_db'") - ensure that you have ran `GRANT ALL PRIVILEGES ON test_db.* TO 'user'@'%';` in mysql
 
 ## Model Fixtures
 
