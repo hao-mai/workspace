@@ -32,7 +32,7 @@ urlpatterns = [
 
 router = routers.DefaultRouter()
 router.register('books', viewsets.BookViewSet, basename='book')
-# router.register('checkout', viewsets.CheckoutViewSet, basename='checkout')
+router.register('checkout', viewsets.CheckoutViewSet, basename='checkout')
 
 
 if settings.DEBUG or settings.ENVIRONMENT == "test":
@@ -45,8 +45,8 @@ if settings.DEBUG or settings.ENVIRONMENT == "test":
     )
     urlpatterns += [
         path("virtual_library/", include(router.urls)),
-        path("docs/", swagger_view, name="library_docs"),
-        path("schema/", schema_view, name="library_schema"),
+        path("virtual_library/docs/", swagger_view, name="library_docs"),
+        path("virtual_library/schema/", schema_view, name="library_schema"),
         # path('book_view/', views.book_view, name='book_view'),
         
     ]

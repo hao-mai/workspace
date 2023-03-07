@@ -1,7 +1,7 @@
 
 ## Welcome
 
-This is my small repo created to highlight my experience with Django.
+The repo is called workspace where different applications will be created to highlight my experience with Django. First project is:
 
 * Create a RESTful API that allows developers to interact with data stored in a database. This app will provide various functionalities and features for devs with data already generated and/or new data to be created for an app called `virtual_library`.
 

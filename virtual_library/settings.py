@@ -45,6 +45,13 @@ ALLOWED_HOSTS = ["*"]
 ############################################
 FIXTURE_DIRS = ['virtual_library']
 
+# djangorestframework
+############################################
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
 # Application definition
 
 INSTALLED_APPS = [
