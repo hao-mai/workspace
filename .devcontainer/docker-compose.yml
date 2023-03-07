@@ -1,0 +1,66 @@
+version: '3.9'
+
+services:
+  # django:
+  #   image: django-docker:0.0.1
+  #   build: .
+  #   restart: unless-stopped
+  #   ports:
+  #     - "8000:8000"
+  #   depends_on:
+  #     - db
+  #   env_file:
+  #     - .env
+
+  app:
+    build:
+      context: .
+
+    volumes:
+      - ..:/workspace:cached
+      - cache:/home/vscode/.cache:cached
+      - ~/.gitconfig:/home/vscode/.gitconfig
+
+    # Overrides default command so things don't shut down after the process ends.
+    command: sleep infinity
+
+    # Uncomment the next line to use a non-root user for all processes.
+    user: vscode
+
+    network_mode: host
+
+    # Use "forwardPorts" in **devcontainer.json** to forward an app port locally.
+    # (Adding the "ports" property to this file will not forward from a Codespace.)
+
+  db:
+    image: mysql:latest
+    restart: unless-stopped
+    env_file: ../.env
+    environment:
+      MYSQL_DATABASE: 'db'
+      MYSQL_USER: 'user'
+      MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_PASSWORD: 'password'
+    ports:
+      - "3306:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+    network_mode: host
+
+  test_db:
+    image: mysql:latest
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: 'test_db'
+      MYSQL_USER: 'user'
+      MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_PASSWORD: 'password'
+    ports:
+      - "3307:3306"
+    volumes:
+      - test-db-data:/var/lib/mysql
+
+volumes:
+  db-data:
+  test-db-data:
+  cache:

@@ -1,0 +1,74 @@
+- model: virtual_library.genre
+  pk: 1
+  fields:
+    name: Action
+- model: virtual_library.book
+  pk: 1
+  fields:
+    title: Bloodsport
+    author: Jake Swift
+    description: A former special forces operative is forced to compete in an underground fighting ring to save his family.
+    genres: [1]
+    num_pages: 350
+    available: true
+    quantity: 5
+
+- model: virtual_library.genre
+  pk: 2
+  fields:
+    name: Comedy
+- model: virtual_library.book
+  pk: 2
+  fields:
+    title: The Funny Bone
+    author: Lenny Laughlin
+    description: A struggling comedian learns the true meaning of laughter and love when he falls for his biggest heckler, but what he doesn't know is that the heckling was for a sinister purposes.
+    genres: [1,2]
+    num_pages: 250
+    available: true
+    quantity: 1
+
+- model: virtual_library.genre
+  pk: 3
+  fields:
+    name: Drama
+- model: virtual_library.book
+  pk: 3
+  fields:
+    title: A Tear in the Fabric
+    author: Ava Jones
+    description: Two sisters are torn apart by tragedy and must learn to forgive each other in order to heal and move on.
+    genres: [3]
+    num_pages: 400
+    available: true
+    quantity: 3
+
+- model: virtual_library.genre
+  pk: 4
+  fields:
+    name: Romance
+- model: virtual_library.book
+  pk: 4
+  fields:
+    title: Love in the City
+    author: Sofia Martinez
+    description: A young woman moves to New York City to start a new life and unexpectedly falls in love with her quirky homeless man.
+    genres: [2, 4]
+    num_pages: 300
+    available: true
+    quantity: 3
+
+- model: virtual_library.genre
+  pk: 5
+  fields:
+    name: Mystery
+- model: virtual_library.book
+  pk: 5
+  fields:
+    title: The Case of the Missing Diamond
+    author: Detective Kate Daniels
+    description: A famous diamond goes missing from a museum and it's up to a brilliant detective to solve the case before the thief strikes again.
+    genres: [5]
+    num_pages: 275
+    available: true
+    quantity: 2
