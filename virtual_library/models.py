@@ -50,9 +50,9 @@ class Checkout(models.Model):
 def update_book_availability(sender, instance, created, **kwargs):
     if created:
         book = instance.book
-        # we're using Case and When expressions to conditionally 
-        # set the available field based on the quantity field. 
-        # If quantity is greater than 1, we set available to True, 
+        # we're using Case and When expressions to conditionally
+        # set the available field based on the quantity field.
+        # If quantity is greater than 1, we set available to True,
         # otherwise we set it to False.
         Book.objects.filter(pk=book.pk).update(
             quantity=F('quantity') - 1,

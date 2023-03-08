@@ -17,7 +17,7 @@ class CheckoutViewSetTestCase(APITestCase):
         cls.valid_payload = {
             'book_id': cls.book.id,
         }
-    
+
     def setUp(self):
         self.client.force_authenticate(user=self.user)
 

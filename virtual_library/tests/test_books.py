@@ -18,7 +18,7 @@ class VirtualLibraryTestCase(APITestCase):
         cls.author2 = 'Author Two'
         cls.book1 = BookFactory(title='Book One', author=cls.author1, genre=[cls.genre1])
         cls.book2 = BookFactory(title='Book Two', author=cls.author2, genre=[cls.genre2], available=False)
-    
+
     def setUp(self):
         self.client.force_authenticate(user=self.user)
 
@@ -30,14 +30,14 @@ class VirtualLibraryTestCase(APITestCase):
         response = self.client.get(reverse('book-list'), format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 2)
-        
+
         # Test list view for authenticated non-admin user
         self.user = UserFactory()
         self.client.force_authenticate(user=self.user)
         response = self.client.get(reverse('book-list'), format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 1)
-        
+
         # Test list view for unauthenticated user
         self.client.logout()
         response = self.client.get(reverse('book-list'), format='json')
@@ -98,7 +98,7 @@ class VirtualLibraryTestCase(APITestCase):
         }
         # send update request
         response = self.client.patch(reverse('book-detail', args=[book.id]), data, format='json')
-        
+
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         # check that book was updated correctly
         book.refresh_from_db()
@@ -106,7 +106,3 @@ class VirtualLibraryTestCase(APITestCase):
         self.assertEqual(book.author,updated_author)
         self.assertEqual(set(book.genre.all()),set(updated_genre))
         self.assertTrue(book.available)
-
-
-
-
