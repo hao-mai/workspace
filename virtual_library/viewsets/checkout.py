@@ -11,7 +11,7 @@ class CheckoutViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, viewsets.G
     """
     API endpoint that allows users to checkout books.
     """
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     serializer_class = CheckoutSerializer
     queryset = Checkout.objects.all()
 
@@ -25,18 +25,12 @@ class CheckoutViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, viewsets.G
         except Book.DoesNotExist:
             return Response({'error': 'Book not found.'}, status=status.HTTP_404_NOT_FOUND)
 
-        if not book.is_available:
+        if not book.available:
             return Response({'error': 'Book is not available.'}, status=status.HTTP_400_BAD_REQUEST)
 
         # Create checkout
         checkout = Checkout(book=book, borrower_id=user_id, return_date=date.today() + timedelta(days=14))
         checkout.save()
-
-        # Update book availability
-        book.quantity -= 1
-        if book.quantity == 0:
-            book.is_available = False
-        book.save()
 
         # Return checkout details
         serializer = CheckoutSerializer(checkout)
@@ -46,15 +40,18 @@ class CheckoutViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, viewsets.G
     def return_early(self, request, pk=None):
         checkout = self.get_object()
         book = checkout.book
+        checkout_obj = Checkout.objects.get(book=checkout.book, borrower=request.user)
+
         # Handle "return book early" functionality here
-        if not book.is_available:
-            book.is_available = True
+        if not book.available:
+            book.available = True
             book.quantity += 1
-            book.save()
-        checkout.delete()
+            book.save()  # save the changes to the book object
+        checkout_obj.delete()
         return Response({'message': 'Book returned early'})
 
-    # def list(self, request):
-    #     queryset = Checkout.objects.filter(user=request.user)
-    #     serializer = self.get_serializer(queryset, many=True)
-    #     return Response(serializer.data)
+
+    def list(self, request):
+        queryset = Checkout.objects.filter(borrower=request.user)
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)

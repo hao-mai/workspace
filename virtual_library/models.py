@@ -2,13 +2,14 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.db.models import F, Value, Case, When
 
 class Genre(models.Model):
     """
     Genre of the book
     """
     name = models.CharField(max_length=255)
-    
+
     def __str__(self):
         return self.name
 
@@ -19,7 +20,7 @@ class Book(models.Model):
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=255)
     description = models.TextField()
-    genres = models.ManyToManyField(Genre)
+    genre = models.ManyToManyField(Genre, related_name='genres')
     num_pages = models.IntegerField()
     available = models.BooleanField(default=True)
     quantity = models.PositiveIntegerField(default=1)
@@ -29,13 +30,6 @@ class Book(models.Model):
         verbose_name = "Book"
         verbose_name_plural = "Books"
         default_permissions = ("add", "change", "delete", "view")
-
-    def save(self, *args, **kwargs):
-        if self.quantity > 0:
-            self.is_available = True
-        else:
-            self.is_available = False
-        super().save(*args, **kwargs)
 
     def __str__(self):
         return str(self.title)
@@ -56,17 +50,20 @@ class Checkout(models.Model):
 def update_book_availability(sender, instance, created, **kwargs):
     if created:
         book = instance.book
-        book.quantity -= 1
-        book.save()
-
-        if book.quantity == 0:
-            book.is_available = False
-            book.save()
-    elif not created and instance.return_date is not None:
+        # we're using Case and When expressions to conditionally
+        # set the available field based on the quantity field.
+        # If quantity is greater than 1, we set available to True,
+        # otherwise we set it to False.
+        Book.objects.filter(pk=book.pk).update(
+            quantity=F('quantity') - 1,
+            available=Case(
+            When(quantity__gt=1, then=Value(True)),
+            default=Value(False)
+        )
+    )
+    elif instance.return_date is not None:
         book = instance.book
-        book.quantity += 1
-        book.save()
-
-        if book.is_available == False:
-            book.is_available = True
-            book.save()
+        Book.objects.filter(pk=book.pk).update(
+            quantity=F('quantity') + 1,
+            available=True
+        )
