@@ -31,8 +31,6 @@ if not pytest_is_running.is_running():
         warnings.filterwarnings("ignore", category=UserWarning)
         environ.Env.read_env(env_file=BASE_DIR / env_file)
 
-        print("Using env file:", env_file)
-
 API_URL = env("API_URL", default="http://localhost:8000")
 ENVIRONMENT = env("ENVIRONMENT", default="local")
 
