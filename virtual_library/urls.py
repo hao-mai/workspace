@@ -9,7 +9,6 @@ from django.urls import include, path
 from django.conf import settings
 
 from virtual_library import viewsets
-# from virtual_library import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -35,10 +34,9 @@ if settings.DEBUG or settings.ENVIRONMENT == "test":
         url_name="library_schema",
     )
     urlpatterns += [
-        # path("virtual_library/", include(router.urls)),
+        path("virtual_library/", include(router.urls)),
         path("", include(router.urls)),
         path("virtual_library/docs/", swagger_view, name="library_docs"),
         path("virtual_library/schema/", schema_view, name="library_schema"),
-        # path('book_view/', views.book_view, name='book_view'),
 
     ]

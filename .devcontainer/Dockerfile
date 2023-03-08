@@ -5,4 +5,4 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 
 RUN chmod -R a+w /usr/local
 
-ENV DJANGO_SETTINGS_MODULE=virtual_library.settings
+
