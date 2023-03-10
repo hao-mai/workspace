@@ -9,6 +9,7 @@ from django.urls import include, path
 from django.conf import settings
 
 from virtual_library import viewsets
+from virtual_library import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -17,12 +18,16 @@ urlpatterns = [
 
 ##################################
 
+
 router = routers.DefaultRouter()
 router.register(r'books', viewsets.BookViewSet, basename='book')
 router.register('checkout', viewsets.CheckoutViewSet, basename='checkout')
 
 urlpatterns = [
     path("virtual_library/", include(router.urls)),
+    path('home/', views.home, name='home'),
+    path('library/', views.libraryhomepage, name='library'),
+    path('resume/', views.resume, name='resume'),
 ]
 
 if settings.DEBUG or settings.ENVIRONMENT == "test":

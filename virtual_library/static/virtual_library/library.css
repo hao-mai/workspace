@@ -1,0 +1,42 @@
+/* library.css */
+
+h3 {
+    font-size: 36px;
+    color: #0066cc;
+    margin-top: 40px;
+  }
+
+@font-face {
+    font-family: Montserrat-Regular;
+    src: url(Montserrat-Regular.4e6c8170.ttf)format("truetype");
+    font-display: swap
+}
+
+  .virtual-library-project {
+    font-size: 20px;
+    line-height: 1.5;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    align-items: center;
+  }
+
+  .virtual-library-project footer {
+    width: 100%;
+    text-align: center;
+    padding: 35px 0 27px;
+    font-size: 14px;
+    position: relative
+}
+
+footer {
+    width: 100%;
+    right: 0;
+    text-align: center;
+    padding: 35px 0 27px;
+    font-size: 14px;
+    position: absolute
+
+}
