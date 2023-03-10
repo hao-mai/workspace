@@ -1,7 +1,10 @@
 from django.shortcuts import render
 
-def homepage(request):
-    return render(request, 'virtual_library/homepage.html')
+def home(request):
+    return render(request, 'virtual_library/home.html')
 
 def libraryhomepage(request):
     return render(request, 'virtual_library/libraryhome.html')
+
+def resume(request):
+    return render(request, 'virtual_library/resume.html')

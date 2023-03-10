@@ -25,8 +25,9 @@ router.register('checkout', viewsets.CheckoutViewSet, basename='checkout')
 
 urlpatterns = [
     path("virtual_library/", include(router.urls)),
-    path('homepage/', views.homepage, name='homepage'),
-    path('library/', views.libraryhomepage, name='library')
+    path('home/', views.home, name='home'),
+    path('library/', views.libraryhomepage, name='library'),
+    path('resume/', views.resume, name='resume'),
 ]
 
 if settings.DEBUG or settings.ENVIRONMENT == "test":

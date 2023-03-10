@@ -11,7 +11,7 @@ h3 {
     src: url(Montserrat-Regular.4e6c8170.ttf)format("truetype");
     font-display: swap
 }
-  
+
   .virtual-library-project {
     font-size: 20px;
     line-height: 1.5;
@@ -22,7 +22,7 @@ h3 {
     border-radius: 10px;
     align-items: center;
   }
-  
+
   .virtual-library-project footer {
     width: 100%;
     text-align: center;
@@ -38,5 +38,5 @@ footer {
     padding: 35px 0 27px;
     font-size: 14px;
     position: absolute
-    
+
 }

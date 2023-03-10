@@ -1,7 +1,7 @@
 
 @font-face {
     font-family: Montserrat-Regular;
-    src: local("fonts/static/Montserrat-Regular.ttf") format("truetype");
+    src: url("../fonts/Montserrat/static/Montserrat-Regular.ttf");
     font-display: swap
 }
 
@@ -34,12 +34,6 @@ button:-moz-focusring,
 [type=reset]:-moz-focusring,
 [type=submit]:-moz-focusring {
     outline: 1px dotted ButtonText
-}
-
-body {
-    color: #d1d1d1;
-    background: #1d1d20;
-    font-family: Montserrat-Regular
 }
 
 h1,
@@ -164,9 +158,25 @@ h2 {
     fill: #fff
 }
 
-/* .main-container .main-container-inner .inner-container header ul .linkedin svg:hover #Selection2 {
-    fill: rgb(47, 0, 255)
-} */
+.main-container .main-container-inner .inner-container header ul .resume svg {
+    transition: all .2s ease-in-out
+}
+
+.main-container .main-container-inner .inner-container header ul .resume svg #Selection1 {
+    fill: #777
+}
+
+.main-container .main-container-inner .inner-container header ul .resume svg #Selection2 {
+    fill: #0000
+}
+
+.main-container .main-container-inner .inner-container header ul .resume svg:hover {
+    transform: scale(1.2)
+}
+
+.main-container .main-container-inner .inner-container header ul .resume svg:hover #Selection1 {
+    fill: #fff
+}
 
 .main-container .main-container-inner .inner-container header ul a {
     color: #ccc;
@@ -223,53 +233,46 @@ h2 {
     flex-basis: 53.4752%
 }
 
-.main-container .main-container-inner .inner-container main.projects-overview .main-message #welcome svg {
+/* .main-container .main-container-inner .inner-container main.projects-overview .main-message .welcome-message .welcome .welcome_svg {
     width: 75%;
-    fill: #fff0
-}
+    fill: #fff0;
+    font-family: Arial;
+    
+} */
 
-.main-container .main-container-inner .inner-container main.projects-overview .main-message h1 {
+.main-container .main-container-inner .inner-container main.projects-overview .main-message p {
     margin-bottom: 20px;
     font-family: Montserrat-Regular;
-    font-size: 50px;
+    font-size: 18px;
     font-weight: 100
 }
 
 @media screen and (min-width:900px) {
     .main-container .main-container-inner .inner-container main.projects-overview .main-message h1 {
         margin-top: 0;
-        font-size: 90px
+        font-size: 50px
     }
 }
 
 .main-container .main-container-inner .inner-container main.projects-overview .main-message span {
     margin-left: 30px;
-    font-size: .9em;
-    font-weight: 100;
+    font-size: 10px;
+    font-weight: 50;
     line-height: 1.6;
     display: block;
-    position: relative
+    position: relative;
 }
 
-/* .main-container .main-container-inner .inner-container main.projects-overview .main-message span:before {
-    content: " ";
-    width: 2px;
-    background: linear-gradient(0deg, var(--grad-2)0%, var(--grad-1)100%);
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: -30px
-} */
-
 .main-container .main-container-inner .inner-container main.projects-overview .main-projects {
-    flex-basis: 30.9017%
+    /* flex-basis: 30.9017% */
+    flex-basis: 20%
 }
 
 .main-container .main-container-inner .inner-container main.projects-overview .main-projects h2 {
-    margin-top: 30px;
+    margin-top: 50px;
     margin-bottom: 30px;
     font-family: Montserrat-Regular;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 100
 }
 
@@ -278,49 +281,13 @@ h2 {
     position: relative
 }
 
-/* .main-container .main-container-inner .inner-container main.projects-overview .main-projects div.project-wrapper:before {
-    content: " ";
-    width: 90px;
-    height: 90px;
-    background: linear-gradient(135deg, var(--grad-1)0%, var(--grad-2)50%, var(--grad-1)100%);
-    opacity: 1;
-    border-top-left-radius: 8px;
-    transition: all .3s ease-in-out;
-    position: absolute;
-    top: -2px;
-    bottom: 0;
-    left: -2px
-} */
-
-/* .main-container .main-container-inner .inner-container main.projects-overview .main-projects div.project-wrapper:hover:before {
-    opacity: 0
-} */
-
-/* .main-container .main-container-inner .inner-container main.projects-overview .main-projects div.project-wrapper:after {
-    content: " ";
-    width: 90px;
-    height: 90px;
-    background: linear-gradient(135deg, var(--grad-2)0%, var(--grad-1)50%, var(--grad-2)100%);
-    opacity: 0;
-    border-top-left-radius: 8px;
-    transition: all .3s ease-in-out;
-    position: absolute;
-    top: -2px;
-    bottom: 0;
-    left: -2px
-}
-
-.main-container .main-container-inner .inner-container main.projects-overview .main-projects div.project-wrapper:hover:after {
-    opacity: 1
-} */
-
 .main-container .main-container-inner .inner-container main.projects-overview .main-projects div.project-wrapper div {
     z-index: 1;
     background: #1d1d20;
-    border-top-left-radius: 7px;
+    border-top-left-radius: 5px;
     flex-direction: column;
     margin-left: 0;
-    padding: 30px 30px 0;
+    padding: 0 15px 10px;
     display: flex;
     position: relative
 }
@@ -345,37 +312,9 @@ h2 {
     position: relative
 }
 
-/* .main-container .main-container-inner .inner-container main.projects-overview .main-projects div.project-wrapper div a span:before {
-    content: "";
-    height: 1px;
-    width: 100%;
-    background: linear-gradient(270deg, var(--grad-2)0%, var(--grad-1)100%);
-    opacity: 1;
-    transition: all .3s ease-in-out;
-    display: inline-block;
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    right: 0
-} */
-
 .main-container .main-container-inner .inner-container main.projects-overview .main-projects div.project-wrapper div a:hover span:before {
     opacity: 0
 }
-
-/* .main-container .main-container-inner .inner-container main.projects-overview .main-projects div.project-wrapper div a span:after {
-    content: "";
-    height: 1px;
-    width: 100%;
-    background: linear-gradient(270deg, var(--grad-1)0%, var(--grad-2)100%);
-    opacity: 0;
-    transition: all .3s ease-in-out;
-    display: inline-block;
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    right: 0
-} */
 
 .main-container .main-container-inner .inner-container main.projects-overview .main-projects div.project-wrapper div a:hover span:after {
     opacity: 1
@@ -385,11 +324,12 @@ h2 {
     position: relative
 }
 
-.main-container .main-container-inner .inner-container main.projects-overview .main-message .welcome-message {
+.main-container .main-container-inner .inner-container main.projects-overview .main-message .welcome-message #welcome_svg text{
     transform-origin: 0;
     opacity: 1;
     transition: all .2s linear;
-    transform: scaleX(1)
+    transform: scaleX(1);
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .main-container .main-container-inner .inner-container main.projects-overview .main-message .individual-project {
@@ -404,7 +344,7 @@ h2 {
 }
 
 .main-container .main-container-inner .inner-container main.projects-overview .main-message .individual-project h2 {
-    margin-top: 60px;
+    margin-top: 10px;
     margin-bottom: 30px;
     font-family: Montserrat-Regular;
     font-size: 30px;
